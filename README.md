@@ -74,15 +74,15 @@ Deploy a MERN application using AKS
 
  ### 3. Deployment in AKS
  1. Create k8s deployment files in below structure
-  Directory Structure
+ - 
  k8s/
-├── mongo-deployment.yaml
-├── user-deployment.yaml
-├── product-deployment.yaml
-├── order-deployment.yaml
-├── gateway-deployment.yaml
-├── frontend-deployment.yaml
-├── ingress.yaml
+ - mongo-deployment.yaml
+ - user-deployment.yaml
+ - product-deployment.yaml
+ - order-deployment.yaml
+ - gateway-deployment.yaml
+ - frontend-deployment.yaml
+ - ingress.yaml
 
 2. Apply kubernetes files
    ```
