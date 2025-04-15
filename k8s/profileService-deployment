@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: profileService
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: profileService
+  template:
+    metadata:
+      labels:
+        app: profileService
+    spec:
+      containers:
+      - name: profileService
+        image: skMernACR.azurecr.io/profileService
+        ports:
+        - containerPort: 3002
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: profileService
+spec:
+  selector:
+    app: profileService
+  ports:
+    - port: 3002
+      targetPort: 3002
+  type: ClusterIP
