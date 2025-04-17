@@ -37,15 +37,18 @@ Deploy a MERN application using AKS
    ```
           az group create --name skMernResourceGroups --location eastus
    ```
+   ![Images/resourceGroups.png](Images/resourceGroups.png)
 4. Create AKS Cluster
    ```
           az aks create --resource-group skMernResourceGroups --name skMernCluster --node-count 2 --generate-ssh-keys
    ```
+   ![Images/aksCluster.png](Images/aksCluster.png)
 5. Connect kubectl to the cluster
    ```
           az aks get-credentials --resource-group skMernResourceGroups --name skMernCluster
           kubectl get nodes
    ```
+   ![Images/kubectl.png](Images/kubectl.png)
 6. Create Azure Container Registry
    ```
          az acr create --resource-group skMernResourceGroups --name skmernacr --sku Basic
@@ -67,10 +70,10 @@ Deploy a MERN application using AKS
 
     docker build -t skmernacr.azurecr.io/frontend ./frontend
     docker push skmernacr.azurecr.io/frontend
-
+    ```
+    ![Images/acr.png](Images/acr.png)
  ### 3. Deployment in AKS
  1. Create k8s deployment files in below structure
- - 
  k8s/
  - mongo-deployment.yaml
  - frontend-deployment.yaml
@@ -82,3 +85,4 @@ Deploy a MERN application using AKS
    ```
    kubectl apply -f k8s/
    ```
+   ![Images/k8deployment.png](Images/k8deployment.png)
