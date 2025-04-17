@@ -59,11 +59,11 @@ Deploy a MERN application using AKS
     ```bash
     cd ./SampleMERNwithMicroservices
 
-    docker build -t skmernacr.azurecr.io/helloService ./backend/helloService
-    docker push skmernacr.azurecr.io/helloService
+    docker build -t skmernacr.azurecr.io/helloservice ./backend/helloService
+    docker push skmernacr.azurecr.io/helloservice
 
-    docker build -t skmernacr.azurecr.io/profileService ./backend/profileService
-    docker push skmernacr.azurecr.io/profileService
+    docker build -t skmernacr.azurecr.io/profileservice ./backend/profileService
+    docker push skmernacr.azurecr.io/profileservice
 
     docker build -t skmernacr.azurecr.io/frontend ./frontend
     docker push skmernacr.azurecr.io/frontend
@@ -73,11 +73,9 @@ Deploy a MERN application using AKS
  - 
  k8s/
  - mongo-deployment.yaml
- - user-deployment.yaml
- - product-deployment.yaml
- - order-deployment.yaml
- - gateway-deployment.yaml
  - frontend-deployment.yaml
+ - helloservice-deployment.yaml
+ - profileservice-deployment.yaml
  - ingress.yaml
 
 2. Apply kubernetes files
