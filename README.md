@@ -35,25 +35,21 @@ Deploy a MERN application using AKS
    ```
 3. Create Azure Resource Group
    ```
-          az group create --name skMernResourceGroup --location eastus
+          az group create --name skMernResourceGroups --location eastus
    ```
 4. Create AKS Cluster
    ```
-          az aks create \
-            --resource-group skMernResourceGroup \
-            --name skMernCluster \
-            --node-count 2 \
-            --generate-ssh-keys
+          az aks create --resource-group skMernResourceGroups --name skMernCluster --node-count 2 --generate-ssh-keys
    ```
 5. Connect kubectl to the cluster
    ```
-          az aks get-credentials --resource-group mernResourceGroup --name mernCluster
+          az aks get-credentials --resource-group skMernResourceGroups --name skMernCluster
           kubectl get nodes
    ```
 6. Create Azure Container Registry
    ```
-         az acr create --resource-group mernResourceGroup --name skMernACR --sku Basic
-         az acr login --name mernacr123
+         az acr create --resource-group skMernResourceGroups --name skmernacr --sku Basic
+         az acr login --name skmernacr --expose-token
     ```
 7. Create docker files for frontend and backend (helloService & profileService) respectively
     - helloservice [HelloServiceDockerfile](backend/helloService/Dockerfile)
@@ -63,14 +59,14 @@ Deploy a MERN application using AKS
     ```bash
     cd ./SampleMERNwithMicroservices
 
-    docker build -t skMernACR.azurecr.io/helloService ./backend/helloService
-    docker push skMernACR.azurecr.io/helloService
+    docker build -t skmernacr.azurecr.io/helloService ./backend/helloService
+    docker push skmernacr.azurecr.io/helloService
 
-    docker build -t skMernACR.azurecr.io/profileService ./backend/profileService
-    docker push skMernACR.azurecr.io/profileService
+    docker build -t skmernacr.azurecr.io/profileService ./backend/profileService
+    docker push skmernacr.azurecr.io/profileService
 
-    docker build -t skMernACR.azurecr.io/frontend ./frontend
-    docker push skMernACR.azurecr.io/frontend
+    docker build -t skmernacr.azurecr.io/frontend ./frontend
+    docker push skmernacr.azurecr.io/frontend
 
  ### 3. Deployment in AKS
  1. Create k8s deployment files in below structure
